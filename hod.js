@@ -1,3 +1,4 @@
+
 // const pureToLower = (name) => {
 //   let copyName = { ...name };
 //   copyName.first = name.first.toLowerCase();
@@ -112,19 +113,19 @@ const cleanUpInput = (a) => {
   return parseFloat(a) || 0;
 };
 
-const bulletAdd = (a, b) => {
+export const bulletAdd = (a, b) => {
   a = parseFloat(a) || 0;
   b = parseFloat(b) || 0;
   return add(a, b);
 };
 
-const bulletAddString = () => {
+export const bulletAddString = (a,b) => {
   a = cleanUpInput(a);
   b = cleanUpInput(b);
   return addString(a, b);
 };
 
-const bulletAddTally = () => {
+export const bulletAddTally = (a,b) => {
   a = parseFloat(a) || 0;
   b = parseFloat(b) || 0;
   return addTally(a, b);
@@ -136,13 +137,27 @@ const bulletAddHOD = (a, b, addFxn) => {
   return addFxn(a, b);
 };
 
+const getAddFxn = (type) => {
+  switch (type) {
+    case "tally":
+      return bulletAddTally;
+    case "string":
+      return bulletAddString;
+    case "add":
+      return bulletAdd;
+    default:
+      throw new Error("Function not defined");
+  }
+};
+const tallyAdd = getAddFxn("tally");
+console.log(tallyAdd(2, 6));
 console.log(bulletAddHOD("2go", 4e1, addTally));
 console.log(bulletAddHOD("2go", 4e-1, addString));
 console.log(bulletAddHOD("ego", 4e1, add));
 console.log(bulletAddHOD("2", 4, (a, b) => "😊".repeat(a + b)));
 
 const gainOrLose = () => {
-  magicNumber = Math.floor(Math.random() * 200 - 100);
+  let magicNumber = Math.floor(Math.random() * 200 - 100);
   return (b) => {
     return magicNumber + b;
   };
@@ -161,7 +176,7 @@ let FCMBLoan = () => {
 let GTBLoan = () => {
   const INTEREST = 2;
   const payBack = (loan) => {
-     return (loan * INTEREST) / 100 + loan;
+    return (loan * INTEREST) / 100 + loan;
   };
   return payBack;
 };
@@ -169,7 +184,7 @@ let GTBLoan = () => {
 let UBALoan = () => {
   const INTEREST = 17;
   const payBack = (loan) => {
-     return (loan * INTEREST) / 100 + loan;
+    return (loan * INTEREST) / 100 + loan;
   };
   return payBack;
 };
@@ -177,17 +192,21 @@ let UBALoan = () => {
 let SKYELoan = () => {
   const INTEREST = 8;
   const payBack = (loan) => {
-     return (loan * INTEREST) / 100 + loan;
+    return (loan * INTEREST) / 100 + loan;
   };
   return payBack;
 };
 
-let fcmb = FCMBLoan()
-let gtb = GTBLoan()
-let uba = UBALoan()
-let skye = SKYELoan()
+let fcmb = FCMBLoan();
+let gtb = GTBLoan();
+let uba = UBALoan();
+let skye = SKYELoan();
 
-console.log(fcmb(45000))
-console.log(gtb(45000))
+console.log(fcmb(45000));
+console.log(gtb(45000));
 console.log(uba(45000));
 console.log(skye(45000));
+
+export const ABOUT = "Some fxns in hod class";
+console.log("fixed")
+export default ABOUT;
