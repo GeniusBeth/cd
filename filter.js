@@ -53,3 +53,13 @@ const filter = (input, pass) => {
 };
 
 console.log(filter(nums, (e) => e == 1));
+
+const mixed = [1,"s",true, null, {}, Symbol('hi'),[], undefined]
+
+let num = mixed.filter(x=> typeof x ==="number")
+
+let bool = mixed.filter(ife => typeof ife =="boolean")
+
+let sym = mixed.filter(ow => typeof ow == "symbol")
+
+console.log(num, bool, sym)
