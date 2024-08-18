@@ -10,19 +10,20 @@
 //   console.log("This message could be a threat ");
 // }
 
-
 //      write a regex rthat returns true if a word has a vowel char
 // + ? * {2,4}
 
 //+ {1,}
 //? {0,1}
 //* {0,}
-pattern =/* /(a|e|i|o|u)/*/ /^e{0,5}$/
-msg=""
+pattern = /* /(a|e|i|o|u)/*/ /^e{0,5}$/;
+msg = "";
 if (pattern.test(msg)) {
-   console.log("it has a digit")
+  console.log("it has a digit");
 } else {
-   console.log("Opps no vowel")
+  console.log("Opps no vowel");
 }
 
-console.log(msg.match(pattern))
+console.log(msg.match(pattern));
+
+//create a pattern to recognize consonant
